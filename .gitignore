@@ -1,0 +1,34 @@
+# Sistema
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.pot
+*.mo
+*.env
+*.swp
+*~
+
+# Ambiente virtual
+venv/
+pet-store-venv/
+
+# Arquivos de configuração
+.env
+*.config
+*.local
+
+# Django/Migrations
+**/migrations/*
+!**/migrations/__init__.py
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Outros
+db.sqlite3
+.idea/
+.vscode/
+*.DS_Store
