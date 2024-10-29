@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,8 +42,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "django_filters",
-    "petshopify.users",
-    "rest_framework.authtoken"
+    "users",
+    "store",
+    "rest_framework.authtoken",
 ]
 
 REST_FRAMEWORK = {
@@ -52,6 +56,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -62,7 +67,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "petshopify.urls"
+ROOT_URLCONF = "urls"
 
 TEMPLATES = [
     {
@@ -80,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "petshopify.wsgi.application"
+WSGI_APPLICATION = "wsgi.application"
 
 
 # Database
@@ -88,8 +93,12 @@ WSGI_APPLICATION = "petshopify.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "pet_store_db",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",  # Update this to the service name defined in docker-compose.yml
+        "PORT": 5432,
     }
 }
 
@@ -134,3 +143,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
