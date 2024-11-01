@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -11,7 +12,9 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(
-        Category, related_name="products", on_delete=models.CASCADE
+        "products.Category",  # Caminho correto para o app de produtos
+        related_name="products",
+        on_delete=models.CASCADE, # C
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
