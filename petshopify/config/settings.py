@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.products', 
     'apps.users',
     "rest_framework.authtoken",
+    'django_extensions',
 ]
 
 REST_FRAMEWORK = {
